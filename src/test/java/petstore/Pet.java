@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.is;
 
 // 3 - Classe
 public class Pet {
@@ -39,6 +40,8 @@ public class Pet {
         .then() // então
                 .log().all()
                 .statusCode(200)
+                .body("name", is ("Atena"))
+                .body("status", is ("available"))
         ;
     }
 
