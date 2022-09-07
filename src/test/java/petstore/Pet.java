@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.contains;
 
 // 3 - Classe
 public class Pet {
@@ -23,7 +24,7 @@ public class Pet {
     }
 
     // Incluir - Creat - Post
-    @Test // Identifica o método ou função como um teste para o TestNG
+    @Test(priority = 0) // Identifica o método ou função como um teste para o TestNG
     public void incluirPet () throws IOException {
         String jsonBody = lerJson("db/pet1.json");
 
@@ -42,7 +43,30 @@ public class Pet {
                 .statusCode(200)
                 .body("name", is ("Atena"))
                 .body("status", is ("available"))
+                .body("category.name", is("BEACHCOIN1010"))
         ;
+    }
+
+    @Test (priority = 1)
+    public void consultarPet(){
+        String petId = "1501198142";
+
+        String token =
+        given()
+                .contentType("aplication/json")
+                .log().all()
+        .when()
+                .get(uri + "/" + petId)
+        .then()
+                .log().all()
+                .statusCode(200)
+                .body("name", is ("Atena"))
+                .body("status", is ("available"))
+                .body("category.name", is("BEACHCOIN1010"))
+        .extract()
+                .path("category.name")
+        ;
+        System.out.println("o token é "+ token);
     }
 
 }
