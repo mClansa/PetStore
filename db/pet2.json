@@ -1,0 +1,18 @@
+{
+  "id": 1501198142,
+  "category": {
+    "id": 1,
+    "name": "BEACHCOIN1010"
+  },
+  "name": "Atena",
+  "photoUrls": [
+    "string"
+  ],
+  "tags": [
+    {
+      "id": 20220907,
+      "name": "data"
+    }
+  ],
+  "status": "sold"
+}
